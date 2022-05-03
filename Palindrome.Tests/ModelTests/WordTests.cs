@@ -1,6 +1,7 @@
 using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Palindrome;
+using System.Linq;
 
 namespace Palindrome.Tests
 {
@@ -12,8 +13,7 @@ namespace Palindrome.Tests
   {
     Word inputWord = new Word("Hello");
     char[] charArray = {'H', 'e', 'l', 'l', 'o'};
-    Console.WriteLine("char Array" + charArray);
-    Assert.AreEqual(charArray[0], inputWord.CharArray[0]);
+    Assert.AreEqual(true, charArray.SequenceEqual(inputWord.CharArray));
   }
   [TestMethod]
   public void ReverseWord_MakesWordReversed_Char()
@@ -21,7 +21,19 @@ namespace Palindrome.Tests
     Word inputWord = new Word("Hello");
     char[] charArray = {'o', 'l', 'l', 'e', 'H'};
     inputWord.ReverseWord();
-    Assert.AreEqual(charArray[0], inputWord.CharArray[0]);
+    Assert.AreEqual(true, charArray.SequenceEqual(inputWord.CharArray));
+  }
+  [TestMethod]
+  public void ReverseWord_ComparesWordToReverse_True()
+  {
+    Word inputWord = new Word("tacocat");
+    Assert.AreEqual(true, inputWord.ReverseWord());
+  }
+  [TestMethod]
+  public void ReverseWord_ComparesWordToReverse_False()
+  {
+    Word inputWord = new Word("racecat");
+    Assert.AreEqual(false, inputWord.ReverseWord());
   }
  }
 }
