@@ -1,4 +1,7 @@
 using System;
+using System.Text;
+using System.Linq;
+
 namespace Palindrome
 {
   public class Word
@@ -10,10 +13,12 @@ namespace Palindrome
       String = word;
       CharArray = word.ToCharArray();
     }
-    public char[] ReverseWord()
+    public bool ReverseWord()
     {
       Array.Reverse(CharArray);
-      return CharArray;
+      char[] TempArray = String.ToCharArray();
+      bool result = TempArray.SequenceEqual(CharArray);
+      return result;
     }
   }
 }
